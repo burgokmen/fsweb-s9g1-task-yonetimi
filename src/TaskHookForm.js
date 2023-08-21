@@ -1,8 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const TaskHookForm = ({ kisiler, submitFn }) => {
+  const notify = () => toast("New Task Added");
   const {
     register,
     handleSubmit,
@@ -90,9 +94,26 @@ const TaskHookForm = ({ kisiler, submitFn }) => {
       </div>
 
       <div className="form-line">
-        <button className="submit-button" type="submit" disabled={!isValid}>
+        <button
+          onClick={notify}
+          className="submit-button"
+          type="submit"
+          disabled={!isValid}
+        >
           Kaydet
         </button>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </form>
   );
